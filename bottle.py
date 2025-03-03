@@ -1,40 +1,15 @@
-import time
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
+import pdbp
+from seleniumbase import BaseCase
 
-def click_play():
-    try:
-        button_name = 'Welcome-module_button__ZG0Zh'
-        button = browser.find_element(By.CLASS_NAME, button_name)
-        action = ActionChains(browser)
-        action.click(button).perform()
+url = "https://www.nytimes.com/games/wordle/index.html"
 
-    except:
-        print("Play Button not found")
+class Wordle(BaseCase):
 
-browser = webdriver.Firefox()
-browser.get('https://www.nytimes.com/games/wordle/index.html')
-
-time.sleep(2) # wait for 3 seconds
-
-try:    
-    button_name = 'purr-blocker-card__button'
-    button = browser.find_element(By.CLASS_NAME, button_name)
-    action = ActionChains(browser)
-    action.click(button).perform()
-
-except:
-    print("Purr Button not found")
-
-time.sleep(2)
-
-click_play()
-
-time.sleep(1)
-
-browser.execute_script('window.history.back()')
-time.sleep(1)
-click_play()
-
+    def test_wordle(self):
+        self.headless = False
+        self.open(url)
+        self.click_if_visible("button.purr-blocker-card__button", timeout=2)
+        self.click_if_visible('button:contains("Play")', timeout=2)
+        self.click_if_visible('svg[data-testid="icon-close"]', timeout=2)
+        self.remove_elements("div.place-ad")
+        breakpoint()
