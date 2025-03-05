@@ -1,11 +1,12 @@
+#ifndef AMJ_DICT.H
+#define AMJ_DICT.H
+
 #include <iostream>
 #include <array>
 #include <vector>
 #include <memory>
 #include <string>
 
-#ifndef AMJ_DICT.H
-#define AMJ_DICT.H
 
 class wordict {
 
