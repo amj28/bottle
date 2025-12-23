@@ -1,3 +1,4 @@
 seleniumbase
 pdbp
 pybind11
+pytest

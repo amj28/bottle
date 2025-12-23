@@ -1,1 +1,1 @@
-pytest bottle.py --gui
+python -m pytest bottle.py --headed
