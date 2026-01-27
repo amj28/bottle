@@ -1,6 +1,8 @@
 import pdbp
 from seleniumbase import BaseCase
 
+# import bottle
+
 url = 'https://www.nytimes.com/games/wordle/index.html'
 
 class Wordle(BaseCase): 

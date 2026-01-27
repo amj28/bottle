@@ -1,14 +1,13 @@
-#ifndef AMJ_DICT.H
-#define AMJ_DICT.H
+#ifndef BOTTLE.H
+#define BOTTLE.H
 
 #include <iostream>
 #include <array>
-#include <vector>
-#include <memory>
 #include <string>
+#include <unordered_map>
 
 
-class wordict {
+class Bottle {
 
 	// A ==> 1, a ==> 1, maps letters to dict index
 	std::unordered_map<char, int> index; // A ==> 1, a ==> 1, maps letters to dict index
@@ -40,13 +39,20 @@ class wordict {
 		std::array<std::string, 6>   y;
 		std::array<std::string, 3>   z;
 	};
-	// following string contains all the letters we know to be in the target word
-	std::string known; // max length of 5
+
+	// -2 if unknown, -1 if not in word
+	// 0 if in word but unknown position, char gets added to zeroes array
+	// [1,5] denotes position
+	std::unordered_map<char, int> letter_state;
+
+	// zeros[char] returns an array of position we KNOW char isn't in
+	// always check this array AFTER checking letter_state
+	std::array<char, std::array<int, 5>> zeros;
+
 	public:
-		wordict();	
+		Bottle();
+
 };
-
-
 
 
 
