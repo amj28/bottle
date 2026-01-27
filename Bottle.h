@@ -1,17 +1,12 @@
-#ifndef BOTTLE.H
-#define BOTTLE.H
+#ifndef BOTTLE
+#define BOTTLE
 
 #include <iostream>
 #include <array>
 #include <string>
 #include <unordered_map>
 
-
-class Bottle {
-
-	// A ==> 1, a ==> 1, maps letters to dict index
-	std::unordered_map<char, int> index; // A ==> 1, a ==> 1, maps letters to dict index
-	struct Letters {
+struct Dictionary {
 		std::array<std::string, 142> a;
 		std::array<std::string, 175> b;
 		std::array<std::string, 198> c;
@@ -38,7 +33,13 @@ class Bottle {
 		// NO LETTERS STARTING WITH X
 		std::array<std::string, 6>   y;
 		std::array<std::string, 3>   z;
-	};
+};
+
+class Bottle {
+
+	// A ==> 1, a ==> 1, maps letters to dict index
+	std::unordered_map<char, int> index; // A ==> 1, a ==> 1, maps letters to dict index
+	Dictionary dictionary;
 
 	// -2 if unknown, -1 if not in word
 	// 0 if in word but unknown position, char gets added to zeroes array
@@ -47,10 +48,16 @@ class Bottle {
 
 	// zeros[char] returns an array of position we KNOW char isn't in
 	// always check this array AFTER checking letter_state
-	std::array<char, std::array<int, 5>> zeros;
+	std::unordered_map<char, std::array<int, 5>> zeros;
+
+	bool matches_constraints(std::string word);
 
 	public:
 		Bottle();
+		
+		// python file calls this func 5 times, once for each letter
+		void update_letter(char l, int state, int position);
+		std::string next_guess();
 
 };
 

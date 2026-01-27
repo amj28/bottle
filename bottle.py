@@ -1,7 +1,7 @@
 import pdbp
 from seleniumbase import BaseCase
 
-# import bottle
+import Bottle
 
 url = 'https://www.nytimes.com/games/wordle/index.html'
 
